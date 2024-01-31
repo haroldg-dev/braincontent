@@ -1,0 +1,68 @@
+---
+title: Git Hooks Locally
+date: November 30, 2023
+description: Welcome to a deep dive into the world of Git hooks! Git hooks are a powerful mechanism that allows developers to automate and customize their Git workflow. In this guide, we'll explore the basics of Git hooks, where to find them in your project, and how to leverage them for better collaboration within your team.
+tags: ["Git", "SSH"]
+img: /images/03.githookssamples.png
+---
+
+## Table of Contents
+
+[What is Git Hooks?](#what-is-git-hooks)
+
+- [Where is it?](#where-it-is)
+- [How to see .git in vs code?](#how-to-see-git-in-vs-code)
+- [pre-commit example](#pre-commit-example)
+- [How to synchronize hooks with your team?](#how-to-synchronize-hooks-with-your-team)
+
+[Further learning](#further-learning)
+
+## What is Git Hooks?
+
+### Where it is?
+
+Git hooks reside within the hidden .git directory of your project. These hooks enable you to execute scripts at various points in the Git workflow.
+
+![Untitled](./images/03.githooksxy.png)
+
+### How to see .git in vs code?
+
+Go to setting and looking for “file.exclude” and remove the pattern “\*\*/.git”.
+
+![Untitled](./images/03.githookvscode.png)
+
+Then go to your three project and you’ll see all the scripts samples to use the hooks.
+
+![Untitled](./images/03.githookssamples.png)
+
+### pre-commit example
+
+To execute a script before you do a commit, you have to open the file “pre-commit.sample”, inside hook directory, and change the name to “pre-commit”, then edit the bash script as you want and saved.
+
+![Untitled](./images/03.githookprecommit.png)
+
+This is a “pre-commit” example:
+
+```jsx
+#!/bin/sh
+
+cd terraform/
+tflint --chdir .
+```
+
+### How to synchronize hooks with your team?
+
+The main problem to synchronize hooks with your team is that .git directory is exclude to the repository.
+So we have to create our own hooks directory and then set it inside of git as the new path of hooks directory.
+
+```jsx
+git config core.hooksPath ./devops/hooks/
+```
+
+![Untitled](./images/03.githookstructure.png)
+
+## Further Learning
+
+[https://git-scm.com/docs/githooks](https://git-scm.com/docs/githooks)
+
+[https://rjzaworski.com/2018/01/keeping-git-hooks-in-sync](https://rjzaworski.com/2018/01/keeping-git-hooks-in-sync)

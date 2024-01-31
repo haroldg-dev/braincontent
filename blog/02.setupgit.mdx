@@ -1,0 +1,88 @@
+---
+title: Setting Up SSH Keys for Git
+date: November 28, 2023
+description: Welcome to the world of version control! If you're new to Git or looking to enhance your workflow, setting up SSH keys is a crucial step. In this post, we'll walk through the process of configuring SSH keys for GitHub, GitLab and BitBucket.
+tags: ["Git", "SSH"]
+img: /images/02.setupgitssh.png
+---
+
+## Table of Contents
+
+1. [Why use ssh keys?](#why-use-ssh-keys)
+   - [Generate SSH Key Pair](#generate-ssh-key-pair)
+   - [Add SSH key to SSH Agent](#add-ssh-key-to-ssh-agent)
+   - [Copy your SSH key to your account](#copy-your-ssh-key-to-your-account)
+   - [Test your connection](#test-your-connection)
+
+## Why Use SSH keys?
+
+SSH keys provide a secure way to authenticate with remote repositories, eliminating the need to enter your username and password every time you interact with Git. They enhance security and streamline your workflow.
+
+### Generate SSH Key Pair
+
+- On Linux/macOS:
+  Open a terminal and enter the following command, replacing the email with the one associated with your Git account.
+
+- On Windows:
+  For Windows users, you can use the Git Bash terminal that comes with Git. Enter the same command as above in the Git Bash terminal.
+
+```
+$ ssh-keygen -t ed25519 -C "your.user@example.com"
+$ ssh-keygen -t rsa -b 4096 -C "your.user@example.com"
+```
+
+### Add SSH key to SSH Agent
+
+The SSH agent is a background process that manages your SSH keys. Run the following commands to add your SSH key to the agent:
+
+```
+# Start the SSH agent
+eval "$(ssh-agent -s)"
+
+# Add your SSH key to the agent
+ssh-add ~/.ssh/id_rsa
+```
+
+### Copy your SSH key to your account
+
+```
+$ ssh-add -L
+```
+
+> GitHub:
+>
+> Open GitHub and log in.
+>
+> Go to Settings > SSH and GPG keys > New SSH Key.
+>
+> Paste your key into the "Key" field and add a relevant title.
+>
+> Click Add SSH Key.
+
+> GitLab:
+>
+> Open GitLab and log in.
+>
+> Go to Settings > SSH Keys.
+>
+> Paste your key into the "Key" field and add a title.
+>
+> Click Add Key.
+
+> Bitbucket:
+>
+> Open Bitbucket and log in.
+>
+> Go to Settings > Security > SSH keys.
+>
+> Click Add Key, paste your key, and add a label.
+>
+> Click Add Key.
+
+### Test your connection
+
+```
+ssh -T git@github.com   # For GitHub
+ssh -T git@gitlab.com   # For GitLab
+ssh -T git@bitbucket.org   # For Bitbucket
+```
