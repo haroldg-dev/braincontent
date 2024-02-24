@@ -30,9 +30,10 @@ When you make changes to files within a Git repository, you can stage those chan
 
 The Conventional Commits specification is a defined standard for commit messages. It provides a straightforward set of rules for creating an explicit and easily readable history. This specification aligns with Semantic Versioning (SemVer), describing "features," "fixes," and "breaking changes" made in commits.
 
-> **Commit messages should follow the following structure:**
->
-> - `<type>[scope]: <description>`
+```
+Commit messages should follow the following structure:
+   - <type>[scope]: <description>
+```
 
 ### Structural Elements of Commits
 
@@ -58,8 +59,8 @@ The Conventional Commits specification is a defined standard for commit messages
 
 Scope refers to the top-level folder where the change is made.
 
-> `<type>[scope]: <description>`
->
+`<type>[scope]: <description>`
+
 > - New Feature:
 >
 >   feat(vpc): add new module for creating a VPC.
